@@ -1,0 +1,23 @@
+<div class="box-form">
+	<div class="left">
+		<div class="overlay">
+		<h1>Hello World</h1>
+		</div>
+	</div>
+
+	<div class="right">
+	<form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+		<h5>Login</h5><br><br><br>
+		<p>Don't have an account? <a href="/create">Create Your Account</a>
+		<div class="inputs">
+			<input type="text" placeholder="user name" formControlName="username">
+			<br>
+			<input type="password" placeholder="password" formControlName="password">
+		</div>
+	</form><br>
+	<div class="remember-me--forget-password text-center">
+		<!-- <a href="#"><p>forget password?</p></a> -->
+		<button>Login</button>
+		</div>
+	</div>	
+</div>

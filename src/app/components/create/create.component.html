@@ -1,0 +1,75 @@
+<div class="container">
+<form class="border border-dark" [formGroup]="createForm" (ngSubmit)="onSubmit()">
+    <div class="row g-0">
+        <div class="col text-center p-2 mb-3 bg-light">
+            <span class="fs-3">Register</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <label for="username" class="p-1">Username or E-mail</label>
+            <input type="text" id="username" class="form-control" formControlName="username">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <label for="firstname" class="p-1">First Name</label>
+            <input type="text" id="firstname" class="form-control" formControlName="firstname">
+        </div>
+        <div class="col">
+            <label for="lastname" class="p-1">Last Name</label>
+            <input type="text" id="lastname" class="form-control" formControlName="lastname">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+        <label for="password" class="p-1">Password</label>
+        <input type="password" id="password" class="form-control" formControlName="password">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+        <label for="mob" class="p-1">Mobile Number</label>
+        <input type="number" id="mob" class="form-control" formControlName="mob">
+        <!-- <input type="number" id="mob" class="form-control" formControlName="mob" [ngClass]="{'is-invalid':submit && createForm.controls.mob.errors}"> -->
+        <!-- <div *ngIf='submit && createForm.controls.mob.errors' class="invalid-feedback">
+            <div *ngIf="createForm.controls.mob.errors?.['required']"> Mobile Num is required</div>
+            <div *ngIf="createForm.controls.mob.errors?.['pattern']">Invalid Number</div>
+        </div> -->
+    </div>
+    </div>
+    <div class="row">
+        <div class="col">
+        <label for="address" class="p-1">Address</label>
+        <textarea name="address" id="address" cols="20" rows="3" class="form-control" formControlName="address"></textarea>
+    </div>
+    </div>
+    <div class="row">
+        <div class="col">
+        <label for="country" class="p-1">Country </label><br>
+        <select name="country" id="country" class="form-control" formControlName="country">
+            <option value="India">India</option>
+            <option value="Japan">Japan</option>
+            <option value="China">China</option>
+        </select>
+        </div>
+        <div class="col">
+            <label for="dob" class="p-1">Date Of Birth </label>
+            <input type="date" id="dob" class="form-control" formControlName="dob">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+        <label for="gender" class="p-1">Gender:</label>
+        <input class="ms-4" type="radio" id="male" value="male" formControlName="gender">Male
+        <input class="ms-4" type="radio" id="female" value="female" formControlName="gender">Female
+        </div>
+    </div><br>
+    <div class="row">
+        <div class="col text-center">
+        <button type="submit" class="btn btn-success" [disabled]="!createForm.valid">Register</button>
+        <!-- <button type="submit" class="btn btn">Cancel</button> -->
+    </div>
+    </div><br>
+</form>
+</div>
