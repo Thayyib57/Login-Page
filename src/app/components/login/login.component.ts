@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
-import { Validators } from '@angular/forms';
+import { FormBuilder,Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AngprojService } from 'src/app/services/angproj.service';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -10,26 +9,22 @@ import { AngprojService } from 'src/app/services/angproj.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
-  constructor(private fb: FormBuilder,private router:Router,private angService:AngprojService) { }
+  hide = true
+  constructor(private fb: FormBuilder,private router:Router,public auth:AuthenticationService) { }
 
   loginForm = this.fb.group({
-    username : "",
-    password : ["",Validators.required]
+    email : ["",[Validators.required,Validators.email]],
+    password : ['',[Validators.required,Validators.minLength(6)]]
   })
 
-  onLogin(){
-    console.warn(this.loginForm.value);
+  get allControls(){
+    return this.loginForm.controls
   }
 
-  navigate(){
-    this.router.navigate(['/create'])
-  }
 
   ngOnInit(): void {
-    this.angService.getPol().subscribe((res)=>{
-      // console.log()
-    })
   }
 
+  submit(){    
+  }
 }

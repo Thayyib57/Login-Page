@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "angular-profile-a5545"
+  },
+  "targets": {
+    "angular-profile-a5545": {
+      "hosting": {
+        "angularproject": [
+          "angular-profile-a5545"
+        ]
+      }
+    }
+  }
+}

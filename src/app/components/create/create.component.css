@@ -1,6 +1,13 @@
 .container{
-    height: 100vh;
+    display: block;
+    max-width: 600px;
+    margin: auto;
+    background: #eceff1;
+    padding: 45px;
+    border-radius: 16px;
+  }
+  
+.center{
     display: flex;
     justify-content: center;
-    align-items: center;
-}
+  }

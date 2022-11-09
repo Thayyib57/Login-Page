@@ -12,7 +12,5 @@ export class AngprojService {
   postPol(data:any){
     return this.http.post<any>('',data)
   }
-  getPol(){
-    return this.http.get<any>('')
-  }
+  
 }
