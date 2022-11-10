@@ -1,26 +1,21 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row class="main-tool">
+  <div>User Profile</div>
+  <div>
+      <a [routerLink]="['/home']" style="color: white; text-decoration: none">Home</a>
+      <a (click)="auth.SignOut()" style="color: white; margin-left: 20px; text-decoration: none;">Logout</a>
+  </div>
+</mat-toolbar-row>
+</mat-toolbar><br>
+
+
 <div class="container-fluid">
     <div class="row">
-      <nav class="col-md-2 d-md-block bg-light sidebar">
-        <div class="sidebar-sticky">
-          <ul class="nav flex-column">
-            <li class="nav-item">
-              <a class="nav-link active" routerLink="/home">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" routerLink="/profile">User Profile</a>
-            </li>
-            <!-- Calling SignOut() Api from AuthService -->
-            <li class="nav-item">
-              <a class="nav-link" (click)="auth.SignOut()" routerLink="">Log out</a>
-            </li>
-          </ul>
-        </div>
-      </nav>
       <!-- Main content -->
       <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
         <div class="inner-adjust">
           <div class="pt-3 pb-2 mb-3 border-bottom">
-            <h1 class="h2">User Profile</h1>
+            <h1 class="h2">My Profile</h1>
           </div>
           <!-- Show user data when logged in -->
           <div class="row" *ngIf="auth.userData as user">
@@ -30,7 +25,7 @@
                   alt="{{user.displayName}}"> -->
                 <div class="media-body">
                   <h1>Hello: <strong>{{(user.displayName) ? user.displayName : 'User'}}</strong></h1>
-                  <p>User ID: <strong>{{user.uid}}</strong></p>
+                  <!-- <p>User ID: <strong>{{user.uid}}</strong></p> -->
                   <p>Email: <strong>{{user.email}}</strong></p>
                   <p>Email Verified: <strong>{{user.emailVerified}}</strong></p>
                 </div>
@@ -40,4 +35,81 @@
         </div>
       </main>
     </div>
-  </div>
+  </div><br><br>
+
+  
+  <form class="margin-top" [formGroup]="profileForm" (ngSubmit)="saveProfile()">
+    <div class="row">
+      <mat-form-field>
+        <input type="text" matInput formControlName="firstname" placeholder="First Name"/>
+      </mat-form-field>
+      <mat-form-field>
+        <input type="text" matInput formControlName="lastname" placeholder="Last Name"/>
+      </mat-form-field>
+      <mat-form-field>
+        <input type="number" matInput formControlName="mob" placeholder="Mobile Number"/>
+      </mat-form-field>
+      <mat-form-field>
+        <input type="text" matInput formControlName="address" placeholder="Address"/>
+      </mat-form-field>
+      <mat-form-field>
+        <input type="text" matInput formControlName="country" placeholder="Country"/>
+      </mat-form-field>
+      <mat-form-field>
+        <input type="text" matInput formControlName="dob" placeholder="Date Of Birth"/>
+      </mat-form-field>
+      <mat-form-field>
+        <input type="text" matInput formControlName="gender" placeholder="Gender"/>
+      </mat-form-field>
+    </div>
+    <button type="submit" mat-raised-button color="primary">
+      Save
+    </button>
+  </form>
+
+ <!-- <table class="table" style="border: 1px solid;">
+    <thead *ngIf="auth.userData as user">
+      <tr>
+        <th>Email:</th>
+        <td>{{user.email}}</td>
+      </tr>
+      <tr>
+        <th>First Name:</th>
+        <td>{{user.firstname}}</td>
+      </tr>
+      <tr>
+        <th>Last Name:</th>
+        <td>{{user.lastname}}</td>
+      </tr>
+      <tr>
+        <th>Mobile Number:</th>
+        <td>{{user.mob}}</td>
+      </tr>
+      <tr>
+        <th>Address:</th>
+        <td>{{user.address}}</td>
+      </tr>
+      <tr>
+        <th>Country:</th>
+        <td>{{user.country}}</td>
+      </tr>
+      <tr>
+        <th>Date Of Birth:</th>
+        <td>{{user.dob}}</td>
+      </tr>
+      <tr>
+        <th>Gender:</th>
+        <td>{{user.gender}}</td>
+      </tr>
+    </thead>
+  </table> -->
+
+
+  <!-- <tbody>
+      <tr *ngFor="let item of polArray">
+          <td>{{item.email}}</td>
+          <td>{{item.firstname | uppercase}}</td>
+          <td>{{item.lastname}}</td>
+          <td>{{item.password}}</td>
+      </tr>
+  </tbody> -->

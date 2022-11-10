@@ -29,6 +29,9 @@ import { ForgetPasswordComponent } from './components/forget-password/forget-pas
 import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
 import { MatNativeDateModule } from '@angular/material/core';
 import { ProfileComponent } from './components/profile/profile.component';
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { provideAuth,getAuth } from '@angular/fire/auth';
+import { provideDatabase,getDatabase } from '@angular/fire/database';
 
 
 @NgModule({
@@ -58,9 +61,12 @@ import { ProfileComponent } from './components/profile/profile.component';
     HttpClientModule,
     ToastrModule.forRoot(),
     HotToastModule.forRoot(),
-    provideFirestore(() => getFirestore()),
     AngularFireModule.initializeApp(environment.firebase),
-    FirestoreModule
+    FirestoreModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideAuth(() => getAuth()),
+    provideDatabase(() => getDatabase()),
+    provideFirestore(() => getFirestore()),
   ],
   providers: [
     {provide:HTTP_INTERCEPTORS,useClass:AngprojInterceptor,multi:true},

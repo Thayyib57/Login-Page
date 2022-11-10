@@ -113,7 +113,7 @@ export class AuthenticationService {
       `users/${user.uid}`
     );
     const userData: User = {
-      uid: user.uid,
+      // uid: user.uid,
       email: user.email,
       displayName: user.displayName,
       // photoURL: user.photoURL,

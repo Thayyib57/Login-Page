@@ -1,7 +1,17 @@
-<div class="container">
+<mat-toolbar color="primary">
+    <mat-toolbar-row class="main-tool">
+    <div>Home</div>
+    <div>
+        <a [routerLink]="['/profile']" style="color: white; text-decoration: none">User Profile</a>
+        <a (click)="auth.SignOut()" style="color: white; margin-left: 20px; text-decoration: none;">Logout</a>
+    </div>
+</mat-toolbar-row>
+</mat-toolbar><br>
+
+<!-- <div class="container">
     <textarea name="" id="" cols="30" rows="10"></textarea>
     <button>Add</button>
 </div>
 
 <a href="/profile">Profile</a><br>
-<a href="/login">Logout</a>
+<a href="/login">Logout</a> -->

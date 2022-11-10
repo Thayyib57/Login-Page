@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AngprojService } from 'src/app/services/angproj.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+// import { Database,set,ref } from '@angular/fire/database';
 
 @Component({
   selector: 'app-create',
@@ -12,7 +13,7 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 })
 export class CreateComponent implements OnInit {
 
-  constructor(private fb:FormBuilder,private angService:AngprojService,private toastr:ToastrService,private router:Router,public auth:AuthenticationService) { }
+  constructor(private fb:FormBuilder,private toastr:ToastrService,private router:Router,public auth:AuthenticationService,public angService:AngprojService) { }
   hide = true
   // email: any;
   // password: any;
@@ -33,7 +34,7 @@ export class CreateComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onSubmit(){
+  onSubmit(value:any){
     this.submit=true
     console.log(this.createForm.value)
     this.angService.postPol(this.createForm.value).subscribe((res)=>{
@@ -42,6 +43,18 @@ export class CreateComponent implements OnInit {
       this.createForm.reset()
     })
     this.router.navigate(['login'])
+    // set(ref(this.database,'/users'+ value.any),{
+    //   email : value.email,
+    //   firstname: value.firstname,
+    //   lastname: value.lastname,
+    //   password: value.password,
+    //   mob :value.mob,
+    //   address: value.address,
+    //   country: value.country,
+    //   dob: value.dob,
+    //   gender: value.gender
+    // });
+    // alert("user created")
   }
   get allControls(){
     return this.createForm.controls

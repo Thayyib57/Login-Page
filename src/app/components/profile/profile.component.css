@@ -1,0 +1,13 @@
+.main-tool{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.margin-top{
+    display: block;
+    max-width: 600px;
+    margin: auto;
+    background: #eceff1;
+    padding: 45px;
+    border-radius: 16px;
+  }

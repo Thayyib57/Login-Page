@@ -1,5 +1,5 @@
 <div class="container"> 
-    <form  [formGroup]="createForm" (ngSubmit)="onSubmit()">
+    <form  [formGroup]="createForm" (ngSubmit)="onSubmit(createForm.value)">
     <mat-toolbar color="primary">
             <span class="fs-3">  Registration Form</span>
     </mat-toolbar><br><br>
@@ -9,7 +9,8 @@
             <input type="text" id="email" class="form-control" formControlName="email" #useremail required>
         </div> -->
         <mat-form-field appearance="fill">
-            <input matInput placeholder="Email" formControlName="email" #useremail required >
+            <mat-label>E-mail</mat-label>
+            <input matInput formControlName="email" #useremail required >
             <mat-error *ngIf="allControls?.email?.errors?.['required']">Email is required</mat-error>
             <mat-error *ngIf="allControls?.email?.errors?.['email']">Enter correct email</mat-error>
 
@@ -20,14 +21,16 @@
             <mat-form-field appearance="fill" class="example-full-width">
                 <!-- <label for="firstname" class="p-1">First Name</label>
                 <input type="text" id="firstname" class="form-control" formControlName="firstname"> -->
-                <input matInput placeholder="firstname" formControlName="firstname">
+                <mat-label>Firstname</mat-label>
+                <input matInput formControlName="firstname">
             </mat-form-field>
         </div>
         <div class="col">
             <!-- <label for="firstname" class="p-1">First Name</label>
             <input type="text" id="firstname" class="form-control" formControlName="firstname"> -->
             <mat-form-field appearance="fill">
-                <input matInput placeholder="lastname" formControlName="lastname">
+                <mat-label>Lastname</mat-label>
+                <input matInput formControlName="lastname">
             </mat-form-field>
         </div>
     </div>
@@ -41,7 +44,8 @@
             <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
                 <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button> -->
-            <input matInput type="password" placeholder="password" autocomplete="on" formControlName="password" #userPwd required>
+            <mat-label>Password</mat-label>
+            <input matInput type="password" autocomplete="on" formControlName="password" #userPwd required>
             <mat-error *ngIf="allControls?.password?.errors?.['required']">Password is required</mat-error>
         </mat-form-field><br>
     </div>
@@ -52,7 +56,7 @@
             <input matInput placeholder="Mobile Number" formControlName="mob">
         </mat-form-field> -->
         <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>Telephone</mat-label>
+            <mat-label>Mobile Number</mat-label>
             <span matPrefix>+91 &nbsp;</span>
             <input type="number" matInput placeholder="555-555-1234" formControlName="mob">
             <mat-icon matSuffix>mode_edit</mat-icon>
@@ -64,11 +68,12 @@
         <textarea name="address" id="address" cols="20" rows="3" class="form-control" formControlName="address"></textarea>
         </div> -->
         <mat-form-field appearance="fill">
+            <mat-label>Address</mat-label>
             <textarea matInput
             cdkTextareaAutosize
             #autosize="cdkTextareaAutosize"
             cdkAutosizeMinRows="1"
-            cdkAutosizeMaxRows="5" placeholder="Address" formControlName="address"></textarea>
+            cdkAutosizeMaxRows="5" formControlName="address"></textarea>
         </mat-form-field>
     </div>
     <div class="row">
