@@ -25,13 +25,13 @@ export class ProfileComponent implements OnInit {
  })
 
   ngOnInit(): void {
-      this.angservice.getPol().toPromise().then(res=>{
-      console.log(res)
+    //   this.angservice.getPol().toPromise().then(res=>{
+    //   console.log(res)
+    // })
       // for (let key in res)
       //  if(res.hasOwnProperty(key))
         // this.polArray.push(res[key]);
       // console.log(this.polArray)
-      })
     }
 
     saveProfile(){

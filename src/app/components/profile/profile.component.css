@@ -4,9 +4,9 @@
     align-items: center;
 }
 .margin-top{
-    display: block;
+    display:block ;
     max-width: 600px;
-    margin: auto;
+    margin:auto;
     background: #eceff1;
     padding: 45px;
     border-radius: 16px;

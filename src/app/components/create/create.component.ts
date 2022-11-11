@@ -12,6 +12,8 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
   styleUrls: ['./create.component.css']
 })
 export class CreateComponent implements OnInit {
+  usersService: any;
+  toast: any;
 
   constructor(private fb:FormBuilder,private toastr:ToastrService,private router:Router,public auth:AuthenticationService,public angService:AngprojService) { }
   hide = true
@@ -34,7 +36,7 @@ export class CreateComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onSubmit(value:any){
+  onSubmit(){
     this.submit=true
     console.log(this.createForm.value)
     this.angService.postPol(this.createForm.value).subscribe((res)=>{
@@ -43,6 +45,8 @@ export class CreateComponent implements OnInit {
       this.createForm.reset()
     })
     this.router.navigate(['login'])
+
+
     // set(ref(this.database,'/users'+ value.any),{
     //   email : value.email,
     //   firstname: value.firstname,
@@ -55,8 +59,34 @@ export class CreateComponent implements OnInit {
     //   gender: value.gender
     // });
     // alert("user created")
+
+
+      // const {  email, password } = this.createForm.value
+      // if (!this.createForm.valid || !password || !email) {
+      //   return;
+      // }  
+      // this.auth
+      //   .SignUp(email, password)
+      //   .pipe(
+      //     switchMap(({ user: { uid } }) =>
+      //       this.usersService.addUser({ uid, email, displayName: name })
+      //     ),
+      //     this.toast.observe({
+      //       success: 'Congrats! You are all signed up',
+      //       loading: 'Signing up...',
+      //       error: ({ message }) => `${message}`,
+      //     })
+      //   )
+      //   .subscribe(() => {
+      //     this.router.navigate(['/home']);
+      //   });
+    
   }
   get allControls(){
     return this.createForm.controls
   }
+}
+
+function switchMap(arg0: ({ user: { uid } }: { user: { uid: any; }; }) => any): any {
+  throw new Error('Function not implemented.');
 }
