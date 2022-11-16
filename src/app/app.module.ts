@@ -20,6 +20,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatRadioModule} from '@angular/material/radio';
+import {MatMenuModule} from '@angular/material/menu';
 import { ToastrModule } from 'ngx-toastr';
 import { AngprojInterceptor } from './interceptor/angproj.interceptor';
 import { HomeComponent } from './components/home/home.component';
@@ -57,6 +58,7 @@ import { provideDatabase,getDatabase } from '@angular/fire/database';
     MatNativeDateModule,
     MatDatepickerModule,
     MatRadioModule,
+    MatMenuModule,
     ReactiveFormsModule,
     HttpClientModule,
     ToastrModule.forRoot(),

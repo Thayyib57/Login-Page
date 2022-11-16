@@ -1,11 +1,11 @@
-export interface ProfileUser{
-    uid: string
-    email?: string,
-    firstname?: string,
-    lastname?: string,
-    address?: string,
-    mob?: number,
-    country?: string
-    dob?: string
-    gender?: string
-}
+// export interface ProfileUser{
+//     uid?: any
+//     email?: any,
+//     firstname?: any,
+//     lastname?: any,
+//     address?: any,
+//     mob?: any,
+//     country?: any
+//     dob?: any
+//     gender?: any
+// }

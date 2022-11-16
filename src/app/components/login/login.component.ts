@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder,Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
@@ -10,7 +9,7 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 })
 export class LoginComponent implements OnInit {
   hide = true
-  constructor(private fb: FormBuilder,private router:Router,public auth:AuthenticationService) { }
+  constructor(private fb: FormBuilder,public auth:AuthenticationService) { }
 
   loginForm = this.fb.group({
     email : ["",[Validators.required,Validators.email]],
@@ -22,9 +21,6 @@ export class LoginComponent implements OnInit {
   }
 
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
-  submit(){    
-  }
 }

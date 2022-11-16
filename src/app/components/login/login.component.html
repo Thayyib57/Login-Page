@@ -1,5 +1,5 @@
 <div class="form-container">
-	<form [formGroup]="loginForm" (ngSubmit)="submit()">
+	<form [formGroup]="loginForm">
 		<mat-toolbar color="primary">Login Form</mat-toolbar><br>
 	<mat-form-field appearance="fill">
 		<input matInput placeholder="Email" formControlName="email" #userName>
@@ -12,14 +12,15 @@
 			<mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
 		</button>
 		<mat-error *ngIf="allControls?.password?.errors?.['required']">Password is required</mat-error>
-		<!-- <mat-error *ngIf="allControls?.password?.errors?.['password']">Password should be minimum of 6</mat-error> -->
 	</mat-form-field><br><br>
 	<div class="center">
 	<button mat-raised-button color="primary" type="submit" (click)="auth.SignIn(userName.value, userPassword.value)">Login</button>
 	</div><br>
-	<div class="center">
+
+	<!-- <div class="center">
 		<button mat-raised-button color="primary" type="submit" (click)="auth.GoogleAuth()">Log in with Google</button>
-	</div><br>
+	</div><br> -->
+	
 	<div class="center">
 		<a routerLink="/forgot-password">Forgot Password?</a>
 	  </div><br>

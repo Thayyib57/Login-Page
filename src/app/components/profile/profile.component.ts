@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-import { AngprojService } from 'src/app/services/angproj.service';
+import { onValue, ref } from '@angular/fire/database';
+import { getDatabase } from 'firebase/database';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
@@ -10,31 +10,18 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor(public auth:AuthenticationService,public angservice:AngprojService) { }
+  constructor(public auth:AuthenticationService) { }
   
- profileForm = new FormGroup({
-    uid: new FormControl(''),
-    email: new FormControl(''),
-    firstname: new FormControl(''),
-    lastname: new FormControl(''),
-    address: new FormControl(''),
-    mob: new FormControl(''),
-    country: new FormControl(''),
-    dob: new FormControl(''),
-    gender: new FormControl('')
- })
+  detailArray:any = []
 
   ngOnInit(): void {
-    //   this.angservice.getPol().toPromise().then(res=>{
-    //   console.log(res)
-    // })
-      // for (let key in res)
-      //  if(res.hasOwnProperty(key))
-        // this.polArray.push(res[key]);
-      // console.log(this.polArray)
-    }
+    const db = getDatabase()
+    const starCountRef = ref(db, 'users/' + this.auth.userData.uid)
+  onValue(starCountRef,(snapshot)=>{
+    this.detailArray.push(snapshot.val())
+    console.log(this.detailArray)
+    console.log(this.auth.userData.uid)
+  })
+   }
 
-    saveProfile(){
-      
-    }
 }

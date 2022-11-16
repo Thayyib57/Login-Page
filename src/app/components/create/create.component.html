@@ -1,13 +1,10 @@
 <div class="container"> 
-    <form  [formGroup]="createForm" (ngSubmit)="onSubmit(createForm.value)">
+    <form  [formGroup]="createForm" (ngSubmit)="SignUp()">
     <mat-toolbar color="primary">
             <span class="fs-3">  Registration Form</span>
     </mat-toolbar><br><br>
+
     <div class="row">
-        <!-- <div class="col">
-            <label for="email" class="p-1">E-mail</label>
-            <input type="text" id="email" class="form-control" formControlName="email" #useremail required>
-        </div> -->
         <mat-form-field appearance="fill">
             <mat-label>E-mail</mat-label>
             <input matInput formControlName="email" #useremail required >
@@ -16,57 +13,50 @@
 
         </mat-form-field><br><br>
     </div>
+
     <div class="row">
         <div class="col">
             <mat-form-field appearance="fill" class="example-full-width">
-                <!-- <label for="firstname" class="p-1">First Name</label>
-                <input type="text" id="firstname" class="form-control" formControlName="firstname"> -->
                 <mat-label>Firstname</mat-label>
                 <input matInput formControlName="firstname">
             </mat-form-field>
         </div>
+
         <div class="col">
-            <!-- <label for="firstname" class="p-1">First Name</label>
-            <input type="text" id="firstname" class="form-control" formControlName="firstname"> -->
             <mat-form-field appearance="fill">
                 <mat-label>Lastname</mat-label>
                 <input matInput formControlName="lastname">
             </mat-form-field>
         </div>
     </div>
+
     <div class="row">
-        <!-- <div class="col">
-        <label for="password" class="p-1" >Password</label>
-        <input type="password" id="password" autocomplete="on" class="form-control" formControlName="password" #userPwd>
-        </div> -->
         <mat-form-field appearance="fill">
-            <!-- <input matInput type="password" [type]="hide ? 'password' : 'text'" placeholder="password" formControlName="password" autocomplete="on" #userPwd required >
-            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-            </button> -->
             <mat-label>Password</mat-label>
             <input matInput type="password" autocomplete="on" formControlName="password" #userPwd required>
             <mat-error *ngIf="allControls?.password?.errors?.['required']">Password is required</mat-error>
         </mat-form-field><br>
     </div>
+
     <div class="row">
-        <!-- <label for="mob" class="p-1">Mobile Number</label>
-        <input type="number" id="mob" class="form-control" formControlName="mob"> -->
-        <!-- <mat-form-field appearance="fill">
-            <input matInput placeholder="Mobile Number" formControlName="mob">
-        </mat-form-field> -->
+        <mat-form-field appearance="fill">
+            <mat-label>Confirm Password</mat-label>
+            <input matInput type="password" autocomplete="on" formControlName="confirmPassword" #userPwd required>
+            <mat-error *ngIf="allControls?.confirmPassword?.errors?.['required']">Confirm Password is required</mat-error>
+        </mat-form-field><br>
+        <mat-error *ngIf="createForm.errors?.['passwordsDontMatch']">Passwords should match</mat-error>
+    </div>
+
+    <div class="row">
         <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>Mobile Number</mat-label>
             <span matPrefix>+91 &nbsp;</span>
-            <input type="number" matInput placeholder="555-555-1234" formControlName="mob">
+            <input type="number" matInput placeholder="555-555-1234" formControlName="phone">
             <mat-icon matSuffix>mode_edit</mat-icon>
           </mat-form-field>
     </div>
+
     <div class="row">
-        <!-- <div class="col">
-        <label for="address" class="p-1">Address</label>
-        <textarea name="address" id="address" cols="20" rows="3" class="form-control" formControlName="address"></textarea>
-        </div> -->
         <mat-form-field appearance="fill">
             <mat-label>Address</mat-label>
             <textarea matInput
@@ -76,14 +66,9 @@
             cdkAutosizeMaxRows="5" formControlName="address"></textarea>
         </mat-form-field>
     </div>
+
     <div class="row">
         <div class="col">
-        <!-- <label for="country" class="p-1">Country </label><br>
-        <select name="country" id="country" class="form-control" formControlName="country">
-            <option value="India">India</option>
-            <option value="Japan">Japan</option>
-            <option value="China">China</option>
-        </select> -->
         <mat-form-field appearance="fill">
             <mat-label>Choose an option</mat-label>
             <select matNativeControl formControlName="country">
@@ -96,40 +81,30 @@
           </mat-form-field>
         </div>
         <div class="col">
-            <!-- <label for="dob" class="p-1">Date Of Birth </label>
-            <input type="date" id="dob" class="form-control" formControlName="dob"> -->
             <mat-form-field appearance="fill">
                 <mat-label>Choose a date</mat-label>
-                <input matInput [matDatepicker]="picker" formControlName="dob">
+                <input matInput [matDatepicker]="picker" formControlName="birth">
                 <mat-hint>MM/DD/YYYY</mat-hint>
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
               </mat-form-field>
         </div>
         </div>
+
     <div class="row">
         <div class="col">
         <label for="gender" class="p-1">Gender:</label>
         <input class="ms-4" type="radio" id="male" value="male" formControlName="gender">Male
         <input class="ms-4" type="radio" id="female" value="female" formControlName="gender">Female
         </div>
-        <!-- <mat-radio-group aria-label="Select an option">
-            <label for="gender" class="p-1"><h2>Gender:</h2></label>
-            <mat-radio-button value="1" class="ms-4">Male</mat-radio-button>
-            <mat-radio-button value="2" class="ms-4">Female</mat-radio-button>
-          </mat-radio-group> -->
     </div><br>
+
     <div class="row">
         <div class="col text-center">
-        <button type="submit" mat-raised-button color="primary" [disabled]="!createForm.valid" (click)="auth.SignUp(useremail.value, userPwd.value)">Register</button>
-        <!-- <button type="submit" class="btn btn">Cancel</button> -->
+        <button type="submit" mat-raised-button color="primary" [disabled]="!createForm.valid">Register</button>
         </div>
     </div><br>
-    <!-- <div class="row">
-        <div class="col text-center">
-            <button type="button" class="btn btn-success" (click)="auth.GoogleAuth()">Continue with Google</button>
-        </div>
-    </div><br> -->
+
     <div class="center">
         <span>Have an account? <a href="/login">Login</a></span>
     </div>

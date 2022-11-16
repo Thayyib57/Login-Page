@@ -21,11 +21,9 @@
           <div class="row" *ngIf="auth.userData as user">
             <div class="col-md-12">
               <div class="media">
-                <!-- <img class="align-self-start mr-5 img-thumbnail rounded-circle" src="{{(user.photoURL) ? user.photoURL : '/assets/dummy-user.png'}}"
-                  alt="{{user.displayName}}"> -->
                 <div class="media-body">
                   <h1>Hello: <strong>{{(user.displayName) ? user.displayName : 'User'}}</strong></h1>
-                  <!-- <p>User ID: <strong>{{user.uid}}</strong></p> -->
+                  <p>User ID: <strong>{{user.uid}}</strong></p>
                   <p>Email: <strong>{{user.email}}</strong></p>
                   <p>Email Verified: <strong>{{user.emailVerified}}</strong></p>
                 </div>
@@ -37,72 +35,39 @@
     </div>
   </div><br><br>
 
-  
-  <form class="margin-top" [formGroup]="profileForm" (ngSubmit)="saveProfile()">
-    <div class="row">
-      <mat-form-field>
-        <input type="text" matInput formControlName="firstname" placeholder="First Name"/>
-      </mat-form-field>
-      <mat-form-field>
-        <input type="text" matInput formControlName="lastname" placeholder="Last Name"/>
-      </mat-form-field>
-      <mat-form-field>
-        <input type="number" matInput formControlName="mob" placeholder="Mobile Number"/>
-      </mat-form-field>
-      <mat-form-field>
-        <input type="text" matInput formControlName="address" placeholder="Address"/>
-      </mat-form-field>
-      <mat-form-field>
-        <input type="text" matInput formControlName="country" placeholder="Country"/>
-      </mat-form-field>
-      <mat-form-field>
-        <input type="text" matInput formControlName="dob" placeholder="Date Of Birth"/>
-      </mat-form-field>
-      <mat-form-field>
-        <input type="text" matInput formControlName="gender" placeholder="Gender"/>
-      </mat-form-field>
-    </div>
-    <button type="submit" mat-raised-button color="primary">
-      Save
-    </button>
-  </form>
 
- <!-- <table class="table" style="border: 1px solid;">
-    <thead *ngIf="auth.userData as user">
-      <tr>
-        <th>Email:</th>
-        <td>{{user.email}}</td>
-      </tr>
-      <tr>
+ <table class="table" style="border: 1px solid;">
+    <thead>
+      <tr *ngFor="let user of detailArray">
         <th>First Name:</th>
         <td>{{user.firstname}}</td>
       </tr>
-      <tr>
+      <tr *ngFor="let user of detailArray">
         <th>Last Name:</th>
         <td>{{user.lastname}}</td>
       </tr>
-      <tr>
+      <tr *ngFor="let user of detailArray">
         <th>Mobile Number:</th>
-        <td>{{user.mob}}</td>
+        <td>{{user.phone}}</td>
       </tr>
-      <tr>
+      <tr *ngFor="let user of detailArray">
         <th>Address:</th>
         <td>{{user.address}}</td>
       </tr>
-      <tr>
+      <tr *ngFor="let user of detailArray">
         <th>Country:</th>
         <td>{{user.country}}</td>
       </tr>
-      <tr>
+      <tr *ngFor="let user of detailArray">
         <th>Date Of Birth:</th>
-        <td>{{user.dob}}</td>
+        <td>{{user.birth}}</td>
       </tr>
-      <tr>
+      <tr *ngFor="let user of detailArray">
         <th>Gender:</th>
         <td>{{user.gender}}</td>
       </tr>
     </thead>
-  </table> -->
+  </table>
 
 
   <!-- <tbody>
