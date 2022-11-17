@@ -31,6 +31,7 @@ import { VerifyEmailComponent } from './components/verify-email/verify-email.com
 import { MatNativeDateModule } from '@angular/material/core';
 import { ProfileComponent } from './components/profile/profile.component';
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { getStorage,provideStorage } from '@angular/fire/storage';
 import { provideAuth,getAuth } from '@angular/fire/auth';
 import { provideDatabase,getDatabase } from '@angular/fire/database';
 
@@ -67,6 +68,7 @@ import { provideDatabase,getDatabase } from '@angular/fire/database';
     FirestoreModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
+    provideStorage(()=>getStorage()),
     provideDatabase(() => getDatabase()),
     provideFirestore(() => getFirestore()),
   ],

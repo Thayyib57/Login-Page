@@ -18,7 +18,6 @@ export function passwordsMatchValidator(): ValidatorFn {
   };
 }
 
-
 @Component({
   selector: 'app-create',
   templateUrl: './create.component.html',
@@ -27,9 +26,8 @@ export function passwordsMatchValidator(): ValidatorFn {
 export class CreateComponent implements OnInit {
 
   constructor(private fb:FormBuilder,public auth:AuthenticationService,public angService:AngprojService,private toast:HotToastService) { }
+  
   hide = true
-
-  submit=false
   createForm = this.fb.group({
     email: ['',[Validators.required,Validators.email]],
     firstname: ['',Validators.required],
@@ -49,11 +47,14 @@ export class CreateComponent implements OnInit {
 
   SignUp(){
     this.auth.SignUp(this.createForm)
-    this.toast.observe({
-      loading: 'Signing up...',
-      success: 'Congrats! You are all signed up',
-      error: 'There was an error occur'
-    })
+        this.toast.observe({
+          loading: 'Signing up...',
+          success: 'Congrats! You are all signed up',
+          error: 'There was an error occur'
+        })
+      
+
+    
   }
 
   get allControls(){

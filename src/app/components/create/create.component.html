@@ -2,7 +2,7 @@
     <form  [formGroup]="createForm" (ngSubmit)="SignUp()">
     <mat-toolbar color="primary">
             <span class="fs-3">  Registration Form</span>
-    </mat-toolbar><br><br>
+    </mat-toolbar>
 
     <div class="row">
         <mat-form-field appearance="fill">
@@ -10,8 +10,7 @@
             <input matInput formControlName="email" #useremail required >
             <mat-error *ngIf="allControls?.email?.errors?.['required']">Email is required</mat-error>
             <mat-error *ngIf="allControls?.email?.errors?.['email']">Enter correct email</mat-error>
-
-        </mat-form-field><br><br>
+        </mat-form-field>
     </div>
 
     <div class="row">
@@ -72,22 +71,22 @@
         <mat-form-field appearance="fill">
             <mat-label>Choose an option</mat-label>
             <select matNativeControl formControlName="country">
-              <option value="" selected></option>
-              <option value="India">India</option>
-              <option value="China">China</option>
-              <option value="Japan">Japan</option>
-              <option value="Saudi Arabia">Saudi Arabia</option>
+                <option value="" selected></option>
+                <option value="India">India</option>
+                <option value="China">China</option>
+                <option value="Japan">Japan</option>
+                <option value="Saudi Arabia">Saudi Arabia</option>
             </select>
           </mat-form-field>
         </div>
         <div class="col">
             <mat-form-field appearance="fill">
                 <mat-label>Choose a date</mat-label>
-                <input matInput [matDatepicker]="picker" formControlName="birth">
-                <mat-hint>MM/DD/YYYY</mat-hint>
-                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-datepicker #picker></mat-datepicker>
-              </mat-form-field>
+                <input type='date' data-date-format="DD-MM-YYYY" matInput formControlName="birth">
+                <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
+                <!-- <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker> -->
+            </mat-form-field>
         </div>
         </div>
 
@@ -97,7 +96,7 @@
         <input class="ms-4" type="radio" id="male" value="male" formControlName="gender">Male
         <input class="ms-4" type="radio" id="female" value="female" formControlName="gender">Female
         </div>
-    </div><br>
+    </div>
 
     <div class="row">
         <div class="col text-center">

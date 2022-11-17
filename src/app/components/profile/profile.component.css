@@ -11,3 +11,35 @@
     padding: 45px;
     border-radius: 16px;
   }
+
+mat-toolbar{
+    justify-content: space-between;
+}
+
+.content{
+    padding: 32px;
+}
+
+.container{
+    display: block;
+    max-width: 300px;
+    margin: auto;
+    background: #eceff1;
+    padding: 45px;
+    border-radius: 15px;
+  }
+
+.profile-image > img{
+    border-radius: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.profile-image{
+    position: relative;
+}
+
+.mat-mini-fab{
+    bottom: 40px;
+    margin-left: 90px;
+}

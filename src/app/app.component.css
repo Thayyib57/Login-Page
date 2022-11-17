@@ -1,0 +1,13 @@
+.main-tool{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+mat-toolbar{
+    justify-content: space-between;
+}
+
+.content{
+    padding: 32px;
+}

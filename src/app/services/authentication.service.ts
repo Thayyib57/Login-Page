@@ -9,19 +9,23 @@ import {
 import { Router } from '@angular/router';
 import { ref, set } from "firebase/database";
 import { Database } from '@angular/fire/database';
+import { Auth, authState, updateProfile, UserInfo } from '@angular/fire/auth';
+import { Observable, of, concatMap, from } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
   userData: any;
-  currentUser$: any;
+  currentUser$ = authState(this.auth);
+
   constructor(
     public afs: AngularFirestore, // Inject Firestore service
     public afAuth: AngularFireAuth, // Inject Firebase auth service
     public router: Router,
     public ngZone: NgZone, // NgZone service to remove outside scope warning
-    private db:Database
+    private db:Database,
+    private auth: Auth
   ) {
     /* Saving user data in localstorage when 
     logged in and setting up null when logged out */
@@ -67,7 +71,6 @@ export class AuthenticationService {
         up and returns promise */
         this.SendVerificationMail();
         this.SetUserData(result.user,createForm);
-        createForm.reset()
       })
       .catch((error) => {
         window.alert(error.message);
@@ -130,11 +133,13 @@ export class AuthenticationService {
     );
     const userData: User = {
       uid : user.uid,
-      displayName: user.displayName,
+      photoURL: user.photoURL,
+      // displayName: user.displayName,
       email: user.email,
       emailVerified: user.emailVerified,
     };
     set(ref(this.db, 'users/' + user.uid), {
+      email: createForm.value.email,
       firstname: createForm.value.firstname,
       lastname: createForm.value.lastname,
       phone: createForm.value.phone,
@@ -147,12 +152,30 @@ export class AuthenticationService {
       merge: true,
     });
   }
+
+  //Upload Photo
+  updateProfile(profileData: Partial<UserInfo>): Observable<any> {
+    const user = this.auth.currentUser;
+    return of(user).pipe(
+      concatMap((user) => {
+        if (!user) throw new Error('Not authenticated');
+
+        return updateProfile(user, profileData);
+      })
+    );
+  }
+
   // Sign out
   SignOut() {
     return this.afAuth.signOut().then(() => {
       localStorage.removeItem('user');
       this.router.navigate(['login']);
     });
+  }
+  
+  // Logout
+  logout(): Observable<any> {
+    return from(this.auth.signOut());
   }
 
 }

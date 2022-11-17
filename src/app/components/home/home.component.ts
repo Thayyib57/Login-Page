@@ -10,6 +10,8 @@ export class HomeComponent implements OnInit {
 
   constructor(public auth:AuthenticationService) { }
 
+  user$ = this.auth.currentUser$
+
   ngOnInit(): void {
   }
 
