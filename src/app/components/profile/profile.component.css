@@ -1,3 +1,7 @@
+.container-fluid{
+    margin-top: -50px;
+}
+
 .main-tool{
     display: flex;
     justify-content: space-between;
@@ -43,3 +47,8 @@ mat-toolbar{
     bottom: 40px;
     margin-left: 90px;
 }
+
+.profile-image-toolbar {
+    border-radius: 100%;
+}
+

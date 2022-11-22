@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,HostBinding } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationService } from './services/authentication.service';
 
@@ -11,5 +11,7 @@ export class AppComponent {
   title = 'angularproject';
 
   constructor(public auth:AuthenticationService,private router:Router){}
+
+  user$ = this.auth.currentUser$
 
 }

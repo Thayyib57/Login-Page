@@ -7,10 +7,9 @@ import {
   AngularFirestoreDocument,
 } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
-import { ref, set } from "firebase/database";
-import { Database } from '@angular/fire/database';
+import { Database, ref, set } from '@angular/fire/database';
 import { Auth, authState, updateProfile, UserInfo } from '@angular/fire/auth';
-import { Observable, of, concatMap, from } from 'rxjs';
+import { Observable, of, concatMap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +26,7 @@ export class AuthenticationService {
     private db:Database,
     private auth: Auth
   ) {
+
     /* Saving user data in localstorage when 
     logged in and setting up null when logged out */
     this.afAuth.authState.subscribe((user) => {
@@ -43,12 +43,11 @@ export class AuthenticationService {
 
 
    // Sign in with email/password
-
   SignIn(email: string, password: string) {
     return this.afAuth
       .signInWithEmailAndPassword(email, password)
       .then((result) => {
-        this.SetUserData(result.user,this.userData);
+        // this.SetUserData(result.user,this.userData);
         this.afAuth.authState.subscribe((user) => {
           if (user) {
             this.router.navigate(['home']);
@@ -62,7 +61,6 @@ export class AuthenticationService {
 
 
   // Sign up with createForm
-
   SignUp(createForm:any) {
     return this.afAuth
       .createUserWithEmailAndPassword(createForm.value.email,createForm.value.password)
@@ -79,7 +77,6 @@ export class AuthenticationService {
 
 
   // Send email verfificaiton when new user sign up
-
   SendVerificationMail() {
     return this.afAuth.currentUser
       .then((u: any) => u.sendEmailVerification())
@@ -118,12 +115,14 @@ export class AuthenticationService {
       .signInWithPopup(provider)
       .then((result) => {
         this.router.navigate(['home']);
-        this.SetUserData(result.user,this.userData);
+        // this.SetUserData(result.user,this.userData);
       })
       .catch((error) => {
         window.alert(error);
       });
   }
+
+
   /* Setting up user data when sign in with username/password, 
   sign up with username/password and sign in with social auth  
   provider in Firestore database using AngularFirestore + AngularFirestoreDocument service */
@@ -133,15 +132,15 @@ export class AuthenticationService {
     );
     const userData: User = {
       uid : user.uid,
-      photoURL: user.photoURL,
-      // displayName: user.displayName,
+      displayName: user.displayName,
       email: user.email,
       emailVerified: user.emailVerified,
     };
     set(ref(this.db, 'users/' + user.uid), {
-      email: createForm.value.email,
+      // email: createForm.value.email,
       firstname: createForm.value.firstname,
       lastname: createForm.value.lastname,
+      password:createForm.value.password,
       phone: createForm.value.phone,
       address: createForm.value.address,
       country: createForm.value.country,
@@ -171,11 +170,6 @@ export class AuthenticationService {
       localStorage.removeItem('user');
       this.router.navigate(['login']);
     });
-  }
-  
-  // Logout
-  logout(): Observable<any> {
-    return from(this.auth.signOut());
   }
 
 }

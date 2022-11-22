@@ -1,8 +1,8 @@
-.main-tool{
+/* .main-tool{
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
+} */
 
 mat-toolbar{
     justify-content: space-between;
@@ -10,4 +10,28 @@ mat-toolbar{
 
 .content{
     padding: 32px;
+}
+
+.profile-image-toolbar {
+    border-radius: 100%;
+}
+
+mat-card{
+    border-radius: 20px;
+    height: 280px;
+    background-color: #eceff1;
+    padding: 45px;
+    border-radius: 16px;
+    max-width: 500px;
+    margin-left: 35%;
+}
+
+mat-form-field{  
+    width: 100%;
+    flex: 1;
+}
+
+.center{
+    display: flex;
+    justify-content: right;
 }

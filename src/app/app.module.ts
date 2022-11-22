@@ -21,6 +21,8 @@ import { MatInputModule } from '@angular/material/input';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatMenuModule} from '@angular/material/menu';
+import {MatCardModule} from '@angular/material/card';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { ToastrModule } from 'ngx-toastr';
 import { AngprojInterceptor } from './interceptor/angproj.interceptor';
 import { HomeComponent } from './components/home/home.component';
@@ -60,6 +62,8 @@ import { provideDatabase,getDatabase } from '@angular/fire/database';
     MatDatepickerModule,
     MatRadioModule,
     MatMenuModule,
+    MatCardModule,
+    MatSlideToggleModule,
     ReactiveFormsModule,
     HttpClientModule,
     ToastrModule.forRoot(),

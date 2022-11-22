@@ -1,8 +1,8 @@
-<mat-toolbar color="primary">
+<!-- <mat-toolbar color="primary">
     Home 
-  <ng-container> 
+  <ng-container *ngIf="user$ | async as user; else loginButton"> 
     <button mat-button [matMenuTriggerFor]="userMenu" >
-        <mat-icon >account_circle</mat-icon>
+        <img width="30" height="30" class="profile-image-toolbar" [src]="user.photoURL ?? 'assets/images/image-placeholder.png'">
         <mat-icon>expand_more</mat-icon>
     </button>
   </ng-container> 
@@ -17,4 +17,23 @@
   <mat-menu #userMenu="matMenu">
     <button mat-menu-item routerLink="/profile"><mat-icon>account_circle</mat-icon>Profile</button>
     <button mat-menu-item (click)="auth.SignOut()"><mat-icon>logout</mat-icon>Logout</button>
-  </mat-menu>
+  </mat-menu> -->
+
+<form [formGroup]="postForm" (ngSubmit)="add()">
+<mat-card>
+  <mat-form-field appearance="fill" hintLabel="Max 250 characters">
+    <textarea matInput #input maxlength="250" placeholder="Enter some input" formControlName="postdata" cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"></textarea>
+    <mat-hint align="end">{{input.value.length || 0}}/250</mat-hint>
+  </mat-form-field><br><br>
+  <div class="center">
+    <button mat-raised-button color="primary" type="submit" [disabled]="!postForm.valid">Add</button>
+  </div>
+</mat-card>
+</form>
+
+
+<table>
+  <tr *ngFor="let user of postArray | keyvalue">
+    <td>{{user.value?.postdata}}</td>
+  </tr>
+</table>

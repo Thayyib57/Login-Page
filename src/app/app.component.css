@@ -11,3 +11,8 @@ mat-toolbar{
 .content{
     padding: 32px;
 }
+
+.profile-image-toolbar{
+    border-radius: 100%;
+
+}

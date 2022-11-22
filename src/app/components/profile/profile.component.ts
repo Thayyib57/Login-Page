@@ -35,7 +35,7 @@ export class ProfileComponent implements OnInit {
     onValue(starCountRef,(snapshot)=>{
     this.detailArray.push(snapshot.val())
     console.log(this.detailArray)
-    console.log(this.auth.userData.uid)
+    console.log(this.auth.userData.uid)    
   })
   }
 
